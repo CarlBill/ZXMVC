@@ -138,6 +138,7 @@
     <Content Include="MuBan\charts.html" />
     <Content Include="MuBan\css\custom.css" />
     <Content Include="MuBan\css\font.css" />
+    <Content Include="MuBan\css\Hua.css" />
     <Content Include="MuBan\css\style.blue.css" />
     <Content Include="MuBan\css\style.default.css" />
     <Content Include="MuBan\css\style.green.css" />
@@ -459,9 +460,11 @@
     <Content Include="MuBan\js\charts-custom.js" />
     <Content Include="MuBan\js\charts-home.js" />
     <Content Include="MuBan\js\front.js" />
+    <Content Include="MuBan\js\HuaKuai.js" />
     <Content Include="MuBan\login.html" />
     <Content Include="MuBan\register.html" />
     <Content Include="MuBan\tables.html" />
+    <Content Include="MuBan\Test.html" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-reboot.css" />

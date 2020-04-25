@@ -55,7 +55,7 @@
                             <label for="register-trueName" class="label-material">真实姓名      </label>
                         </div>
                         <div class="form-group-material">
-                            <input id="register-tel" type="text" name="tel" required data-msg="请输入您的手机号" class="input-material"><input id="Button1" type="button" value="获取手机验证码" onclick="GetYz()" class="btn btn-info" style="float:right;margin-top:30px;" />
+                            <input id="register-tel" type="text" name="tel" required data-msg="请输入您的手机号" class="input-material"><span><input id="Button1" type="button" value="获取手机验证码" onclick="GetYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
                             <label for="register-tel" class="label-material">手机号        </label>
                         </div>
                         <div class="form-group-material">
@@ -71,9 +71,9 @@
                             <label for="register-agree">我同意这些条款和政策</label>
                         </div>
                         <div class="form-group text-center">
-                            <input id="register" type="submit" value="注册" class="btn btn-primary">
+                            <input id="register" type="button" value="注册" class="btn btn-primary" onclick="Sign()">
                         </div>
-                    </form><small>已经注册了账号?去登录 </small><a href="login.html" class="signup">Login</a>
+                    </form><small>已经注册了账号?去登录 </small><a href="login.html" class="signup">登录</a>
                 </div>
               </div>
             </div>
@@ -96,5 +96,7 @@
   </body>
 </html>
 <script>
+    function Sign() {
 
+    }
 </script>

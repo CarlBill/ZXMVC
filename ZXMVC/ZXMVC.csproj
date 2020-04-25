@@ -150,6 +150,8 @@
     <Content Include="MuBan\icons-reference\fonts\dark-dashboard.svg" />
     <Content Include="MuBan\icons-reference\icons-reference.html" />
     <Content Include="MuBan\icons-reference\styles.css" />
+    <Content Include="MuBan\img\bg3.jpeg" />
+    <Content Include="MuBan\img\bg.jpeg" />
     <Content Include="MuBan\img\avatar-0.jpg" />
     <Content Include="MuBan\img\avatar-1.jpg" />
     <Content Include="MuBan\img\avatar-10.jpg" />
@@ -162,7 +164,7 @@
     <Content Include="MuBan\img\avatar-7.jpg" />
     <Content Include="MuBan\img\avatar-8.jpg" />
     <Content Include="MuBan\img\avatar-9.jpg" />
-    <Content Include="MuBan\img\bg.jpeg" />
+    <Content Include="MuBan\img\bg1.jpeg" />
     <Content Include="MuBan\img\brand\brand-1.svg" />
     <Content Include="MuBan\img\brand\brand-2.svg" />
     <Content Include="MuBan\img\brand\brand-3.svg" />

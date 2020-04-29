@@ -156,7 +156,7 @@
             </div>
             <!-- Sidebar Navidation Menus  icon-windows--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li class="active"><a href="instrumentTray.html"> <i class="icon-home"></i>仪表盘 </a></li>
+                <li class="active"><a href="index.html"> <i class="icon-home"></i>仪表盘 </a></li>
                 <li>
                     <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-settings"></i>角色管理</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -164,15 +164,8 @@
                         <li><a href="user.html">客户管理</a></li>
                     </ul>
                 </li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>车辆展示 </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-            </ul><span class="heading">Extras</span>
-            <ul class="list-unstyled">
-                <li> <a href="#"> <i class="icon-settings"></i>Demo </a></li>
-                <li> <a href="#"> <i class="icon-writing-whiteboard"></i>Demo </a></li>
-                <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
-            </ul>
+                <li><a href="tables.html"> <i class="icon-grid"></i>贷款申请 </a></li>
+                </ul>
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
@@ -184,58 +177,6 @@
             <section class="no-padding-top no-padding-bottom">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
-                                    </div>
-                                    <div class="number dashtext-1">27</div>
-                                </div>
-                                <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-contract"></i></div><strong>New Projects</strong>
-                                    </div>
-                                    <div class="number dashtext-2">375</div>
-                                </div>
-                                <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>New Invoices</strong>
-                                    </div>
-                                    <div class="number dashtext-3">140</div>
-                                </div>
-                                <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="statistic-block block">
-                                <div class="progress-details d-flex align-items-end justify-content-between">
-                                    <div class="title">
-                                        <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>All Projects</strong>
-                                    </div>
-                                    <div class="number dashtext-4">41</div>
-                                </div>
-                                <div class="progress progress-template">
-                                    <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -243,17 +184,30 @@
             <section class="no-padding-bottom">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="bar-chart block no-margin-bottom">
-                                <canvas id="barChartExample1"></canvas>
-                            </div>
-                            <div class="bar-chart block">
-                                <canvas id="barChartExample2"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="line-cahrt block">
-                                <canvas id="lineCahrt"></canvas>
+                        <div class="col-lg-6">
+                            <div class="block margin-bottom-sm" style="width:1200px;height:900px">
+                                <div class="title"><strong>仪表盘</strong></div>
+                                <div style="width:319px;height:148px;background-color:greenyellow;float:left;margin-left:20px">
+                                    <div style="float:left">
+                                        <span id="userCount" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">用户数量</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/5.png" alt="" style="width:127px;height:101px" /></div>
+                                </div>
+                                <div style="width:319px;height:148px;background-color:cyan;float:left;margin-left:30px">
+                                    <div style="float:left">
+                                        <span id="cjNum" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">成交量</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/4.png" alt="" style="width:127px;height:101px" /></div>
+                                </div>
+                                <div style="width:319px;height:148px;background-color:darkviolet;float:left;margin-left:30px">
+                                    <div style="float:left">
+                                        <span id="cjMoney" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">成交额(单位:万元)</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/3.png" alt="" style="width:127px;height:101px" /></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -597,3 +551,48 @@
     <script src="js/front.js"></script>
 </body>
 </html>
+
+<script>
+    //文档就绪函数
+    $(function () {
+        userCount();
+        cjCount();
+        cjMoney();
+    })
+
+    //用户数量
+    function userCount() {
+        $.ajax({
+            url: 'https://localhost:44356/api/ZXLoan/PostUserValue',
+            type: 'get',
+            success: function (data) {
+                $("#userCount").empty();
+                $("#userCount").append(data);
+            }
+        })
+    }
+
+    //成交量
+    function cjCount() {
+        $.ajax({
+            url: 'https://localhost:44356/api/ZXLoan/PostCjCount',
+            type: 'get',
+            success: function (data) {
+                $("#cjNum").empty();
+                $("#cjNum").append(data);
+            }
+        })
+    }
+
+    //成交额
+    function cjMoney() {
+        $.ajax({
+            url: 'https://localhost:44356/api/ZXLoan/PostCjMoney',
+            type: 'get',
+            success: function (data) {
+                $("#cjMoney").empty();
+                $("#cjMoney").append(data);
+            }
+        })
+    }
+</script>

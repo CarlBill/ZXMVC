@@ -182,7 +182,6 @@
     <Content Include="MuBan\CarsImg\7.png" />
     <Content Include="MuBan\CarsImg\8.png" />
     <Content Include="MuBan\CarsImg\9.png" />
-    <Content Include="MuBan\charts.html" />
     <Content Include="MuBan\css\custom.css" />
     <Content Include="MuBan\css\font.css" />
     <Content Include="MuBan\css\Hua.css" />
@@ -194,7 +193,6 @@
     <Content Include="MuBan\css\style.sea.css" />
     <Content Include="MuBan\css\style.violet.css" />
     <Content Include="MuBan\fonts\dark-dashboard.svg" />
-    <Content Include="MuBan\forms.html" />
     <Content Include="MuBan\icons-reference\fonts\dark-dashboard.svg" />
     <Content Include="MuBan\icons-reference\icons-reference.html" />
     <Content Include="MuBan\icons-reference\styles.css" />
@@ -507,7 +505,6 @@
     <Content Include="MuBan\img\photos\victor-ene-1301123-unsplash.jpg" />
     <Content Include="MuBan\img\template-mac.png" />
     <Content Include="MuBan\index.html" />
-    <Content Include="MuBan\instrumentTray.html" />
     <Content Include="MuBan\js\charts-custom.js" />
     <Content Include="MuBan\js\charts-home.js" />
     <Content Include="MuBan\js\front.js" />

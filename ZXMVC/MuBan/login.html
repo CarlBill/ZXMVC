@@ -90,11 +90,11 @@
                             <div class="content">
                                 <form method="get" class="form-validate mb-4">
                                     <div class="form-group">
-                                        <input id="login-username" type="text" name="loginUsername" class="input-material" onblur="Change1()"><span id="name" style="color:orangered">用户名不能为空</span>
+                                        <input id="login-username" type="text" name="loginUsername" class="input-material" onblur="Change1()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span>
                                         <label for="login-username" class="label-material">用户名</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="login-password" type="password" name="loginPassword" class="input-material" onblur="Change2()"><span id="pwd" style="color:orangered">密码不能为空</span>
+                                        <input id="login-password" type="password" name="loginPassword" class="input-material" onblur="Change2()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
                                         <label for="login-password" class="label-material">密码</label>
                                     </div>
                                     <button type="button" class="btn btn-primary" onclick="Login()">登录</button><br /><br />
@@ -130,39 +130,39 @@
         document.getElementById("name").style.display = "none";
         document.getElementById("pwd").style.display = "none";
     })
+    //密码正则验证
+    var regName = /^[a-zA-Z]\w{5,17}$/;
+
+    //用户名正则验证+判重
+    var re = /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+
     function Change1() {
         var name = $("#login-username").val();
-        if (name == "") {
-            document.getElementById("name").style.display = "block";
-        }
-        if (name != "") {
+        if (re.test(name) && name.length >= 2 && name.length <= 6) {
             document.getElementById("name").style.display = "none";
+        }
+        else {
+            document.getElementById("name").style.display = "block";
         }
     }
     function Change2() {
         var pwd = $("#login-password").val();
-        if (pwd == "") {
-            document.getElementById("pwd").style.display = "block";
-        }
-        if (pwd != "") {
+
+
+        if (regName.test(pwd)) {
             document.getElementById("pwd").style.display = "none";
         }
+        else {
+            document.getElementById("pwd").style.display = "block";
+        }
     }
-    
+
     function Login() {
         var name = $("#login-username").val();
         var pwd = $("#login-password").val();
-        if (name == "" && pwd == "") {
-            document.getElementById("name").style.display = "block";
-            document.getElementById("pwd").style.display = "block";
-        }
-        else if (name == "") {
-            document.getElementById("name").style.display = "block";
-        }
-        else if (pwd == "") {
-            document.getElementById("pwd").style.display = "block";
-        }
-        else {
+
+
+        if (regName.test(pwd) && re.test(name) && name.length >= 2 && name.length <= 6) {
             $(".verBox").css({
                 "left": "0",
                 "opacity": "1"
@@ -185,8 +185,16 @@
                         data: { Uname: name, Upwd: pwd },
                         success: function (d) {
                             if (d > 0) {
-                                alert("登录成功！");
-                                location.href = "index.html";
+                                //根据不同的角色显示不同的页面  1管理员  2审核员  3
+                                if (d == 1) {
+                                    location.href = "index.html";
+                                }
+                                if (d == 2) {
+                                    location.href = "";
+                                }
+                                if (d == 3) {
+                                    location.href = "";
+                                }
                             }
                             else {
                                 alert("登录失败！");
@@ -195,6 +203,16 @@
                     })
                 },
             });
+        }
+        else if (!regName.test(pwd) && !re.test(name) && name.length <= 2 || name.length >= 6) {
+            document.getElementById("name").style.display = "block";
+            document.getElementById("pwd").style.display = "block";
+        }
+        else if (!re.test(name)) {
+            document.getElementById("name").style.display = "block";
+        }
+        else if (!regName.test(pwd)) {
+            document.getElementById("pwd").style.display = "block";
         }
     }
 </script>

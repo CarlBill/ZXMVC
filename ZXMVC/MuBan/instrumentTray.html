@@ -217,7 +217,7 @@
                 <li class="active"><a href="tables.html"> <i class="icon-grid"></i>车辆展示 </a></li>
                 <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-                <li><a href="instrumentTray.html"> <i class="icon-padnote"></i>仪表盘</a></li>
+                <li><a href="instrumentTray.html"> <i class="icon-logout"></i>仪表台</a></li>
                 <li>
                     <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -238,14 +238,14 @@
             <!-- Page Header-->
             <div class="page-header no-margin-bottom">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Tables</h2>
+                    <h2 class="h5 no-margin-bottom">Instrument Tray</h2>
                 </div>
             </div>
             <!-- Breadcrumb-->
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Tables        </li>
+                    <li class="breadcrumb-item active">Instrument Tray        </li>
                 </ul>
             </div>
             <section class="no-padding-top">
@@ -253,35 +253,35 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="block margin-bottom-sm" style="width:1200px;height:900px">
-                                <div class="title"><strong>车辆信息显示</strong></div>
-                                <div class="table-responsive" style="width:1200px;height:800px">
-                                    <table class="table" style="text-align:center;border:double" border="1">
-                                        <thead>
-                                            <tr>
-                                                <th>车辆照片</th>
-                                                <th>用户名</th>
-                                                <th>品牌名称</th>
-                                                <th>车辆型号</th>
-                                                <th>车架号  </th>
-                                                <th>使用年限</th>
-                                                <th>是否是二手车</th>
-                                                <th>提交时间</th>
-                                                <th>状态</th>
-                                                <th>贷款期限</th>
-                                                <th>报价(单位:万元)</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tb">
-                                        </tbody>
-                                    </table>
+                                <div class="title"><strong>仪表盘</strong></div>
+                                <div style="width:319px;height:148px;background-color:greenyellow;float:left;margin-left:20px">
+                                    <div style="float:left">
+                                        <span id="userCount" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">用户数量</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/5.png" alt="" style="width:127px;height:101px" /></div>
+                                </div>
+                                <div style="width:319px;height:148px;background-color:cyan;float:left;margin-left:30px">
+                                    <div style="float:left">
+                                        <span id="cjCount" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">成交量</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/4.png" alt="" style="width:127px;height:101px" /></div>
+                                </div>
+                                <div style="width:319px;height:148px;background-color:darkviolet;float:left;margin-left:30px">
+                                    <div style="float:left">
+                                        <span id="cjMoney" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
+                                        <p style="margin-top:10px;margin-left:20px;">成交额(单位:万元)</p>
+                                    </div>
+                                    <div style="float:right;margin-right:10px;margin-top:15px"><img src="/MuBan/images/3.png" alt="" style="width:127px;height:101px" /></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </section>
-            <footer class="footer">
+            <footer class="footer" style="float:none">
                 <div class="footer__block block no-margin-bottom">
                     <div class="container-fluid text-center">
                         <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
@@ -303,99 +303,42 @@
 </html>
 
 <script>
-    //文档就绪函数
     $(function () {
-        show();
-        btnSta();
+        userCount();
+        cjCount();
+        cjMoney();
     })
 
-    function show() {
+    function userCount() {
         $.ajax({
-            url: 'https://localhost:44356/api/Vehicle/GetVehicleInfos',
+            url: 'https://localhost:44356/api/ZXLoan/PostUserValue',
             type: 'get',
             success: function (data) {
-                $("#tb").empty();
-                $(data).each(function () {
-                    var line = "";
-                    line += '<tr>'
-                        + '<td><img src="' + this.Cimg + '" alt="" style="width:40px;height:35px" /></td>'
-                        + '<td>' + this.Utname + '</td>'
-                        + '<td>' + this.Bname + '</td>'
-                        + '<td>' + this.Tname + '</td>'
-                        + '<td>' + this.Cvin + '</td>'
-                        + '<td>' + this.Cyear + '</td>'
-                        + '<td>' + (this.Csf == false ? "否" : "是") + '</td>'
-                        + '<td>' + this.Ctime + '</td>'
-                        + '<td>' + status(this.Czt) + '<input id="hidZt" type="hidden" value="' + this.Czt + '" /><input id="hidFrt" type="hidden" value="' + this.Pgtime +'" /</td>'
-                        + '<td>' + this.Cqx + '</td>'
-                        + '<td>' + this.Cbj + '</td>'
-                        + '<td><input id="btnThrough" class="btn btn-danger" type="button" value="审核通过并放款"  onclick="through(' + this.Cuid + ')" /><input id="Message" type="button" class="btn btn-success" value="短信提示" onclick="textMessage(' + this.Utel+')" /></td>'
-                        + '</tr>'
-                    $("#tb").append(line);
-                })
+                $("#userCount").empty();
+                $("#userCount").append(data);
             }
         })
     }
 
-    //将状态显示为文字
-    function status(zt) {
-        if (zt==1) {
-            return('待审核')
-        }
-        if (zt==2) {
-            return('审核通过')
-        }
-        if (zt == 3) {
-            return('审核未通过')
-        }
-        if (zt == 4) {
-            return('已还款')
-        }
-        if (zt==5) {
-            return('未还款')
-        }
+    function cjCount() {
+        $.ajax({
+            url: 'https://localhost:44356/api/ZXLoan/PostCjCount',
+            type: 'get',
+            success: function (data) {
+                $("#cjCount").empty();
+                $("#cjCount").append(data);
+            }
+        })
     }
 
-    function btnSta() {
-        if ($("#hidZt").val()==5) {
-            $("#Message").prop("disabled", false);
-        }
+    function cjMoney() {
+        $.ajax({
+            url: 'https://localhost:44356/api/ZXLoan/PostCjMoney',
+            type: 'get',
+            success: function (data) {
+                $("#cjMoney").empty();
+                $("#cjMoney").append(data);
+            }
+        })
     }
-
-    //点击审核通过按钮
-    function through(uid) {
-        if ($("#hidZt").val()!=1) {
-            alert('已通过，无需再次修改')
-        }
-        else {
-            $.ajax({
-                url: 'https://localhost:44356/api/ZXLoan/UptState?id=' + uid,
-                type: 'post',
-                success: function (data) {
-                    alert('操作已完成');
-                    show();
-                },
-                error: function (data) {
-                    alert('对不起，操作失败');
-                }
-            })
-        }
-    }
-
-
-    function textMessage(tel) {
-        if ($("#hidZt").val()!=5) {
-            alert('无需提醒该用户')
-        }
-        else {
-            $.ajax({
-                url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + tel,
-                type: 'post',
-                success: function (data) {
-                    alert('提醒成功');
-                }
-            })
-        }
-        }
-
 </script>

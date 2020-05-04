@@ -59,7 +59,7 @@
                 <li><a href="index.html"><i class="icon-home"></i>仪表盘 </a></li>
                 <li class="active"><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
                 <li><a href="user.html"><i class="icon-grid"></i>客户信息</a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
+                <li><a href="userInfo.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
             </ul>
         </nav>
         <!-- Sidebar Navigation end-->
@@ -78,11 +78,11 @@
                 </ul>
             </div>
             <div>
-                审核员名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询"  class="btn btn-info"/>
+                审核员名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询"  class="btn btn-info" onclick="search()"/>
                 <br />
                 <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                     <thead>
-                        <tr>
+                        <tr style="color:lightsalmon">
                             <th>编号</th>
                             <th>审核员名称</th>
                             <th>真实姓名</th>
@@ -91,7 +91,7 @@
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="tb" >
+                    <tbody id="tb"  style="color:cadetblue">
                     </tbody>
                 </table>
             </div>
@@ -119,6 +119,7 @@
     $(function () {
         load();
     })
+    //显示
     function load() {
         $.ajax({
             url: "https://localhost:44356/api/ZXLoan/GetShen?name=" + $("#name").val() + "&tname=" + $("#tname").val(),
@@ -133,11 +134,32 @@
                             + '<td>' + this.Utname + '</td>'
                             + '<td>' + this.Utel + '</td>'
                             + '<td>' + this.Utime + '</td>'
-                            + '<td><input id="Button1" type="button" value="取消审核员身份" class="btn btn-success" onclick="btn(' + this.Uid + ')"/></td>'
+                            + '<td><input id="Button1" type="button" value="取消审核员身份" class="btn btn-success" onclick="cancel(' + this.Uid + ')"/></td>'
                             + '</tr>'
                         $("#tb").append(line);
                     }
                 )
+            }
+        })
+    }
+
+    //查询
+    function search() {
+        load();
+    }
+
+    //取消管理员身份
+    function cancel(uid) {
+        $.ajax({
+            url: "https://localhost:44356/api/ZXLoan/CancelShen?Uid="+uid,
+            type: "post",
+            success: function (d) {
+                if (d>0) {
+                    alert("操作成功！");
+                    load();
+                } else {
+                    alert("操作失败！");
+                }
             }
         })
     }

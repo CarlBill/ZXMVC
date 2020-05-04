@@ -55,18 +55,12 @@
                     <p>Web Designer</p>
                 </div>
             </div>
-            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="index.html"> <i class="icon-home"></i>仪表盘 </a></li>
-                <li>
-                    <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-settings"></i>角色管理</a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="shen.html">审核员管理</a></li>
-                        <li class="active"><a href="user.html">客户管理</a></li>
-                    </ul>
-                </li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>贷款申请 </a></li>
-                </ul>
+                <li><a href="index.html"><i class="icon-home"></i>仪表盘 </a></li>
+                <li><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
+                <li class="active"><a href="user.html"><i class="icon-grid"></i>客户信息</a></li>
+                <li><a href="tables.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
+            </ul>
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
@@ -84,19 +78,19 @@
                 </ul>
             </div>
             <div>
-                客户名称：<input id="name" type="text" />真实姓名：<input id="tname" type="text" /><input id="Button1" type="button" value="button" />
-                <table>
+                客户名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询" class="btn btn-info"/>
+                <br />
+                <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                     <thead>
-                        <tr>
+                        <tr style="color:lightsalmon">
                             <th>编号</th>
                             <th>客户名称</th>
                             <th>真实姓名</th>
                             <th>电话号</th>
-                            <th>入职时间</th>
-                            <th>操作</th>
+                            <th>注册时间</th>
                         </tr>
                     </thead>
-                    <tbody id="tb">
+                    <tbody id="tb" style="color:cadetblue">
                     </tbody>
                 </table>
             </div>
@@ -138,7 +132,6 @@
                             + '<td>' + this.Utname + '</td>'
                             + '<td>' + this.Utel + '</td>'
                             + '<td>' + this.Utime + '</td>'
-                            + '<td><input id="Button1" type="button" value="取消权限" onclick="btn(' + this.Uid + ')"/></td>'
                             + '</tr>'
                         $("#tb").append(line);
                     }

@@ -84,8 +84,8 @@
                 </ul>
             </div>
             <div>
-                审核员名称：<input id="name" type="text" />真实姓名：<input id="tname" type="text" /><input id="Button1" type="button" value="button" />
-                <table>
+                审核员名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询"  class="btn btn-info"/>
+                <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                     <thead>
                         <tr>
                             <th>编号</th>
@@ -138,7 +138,7 @@
                             + '<td>' + this.Utname + '</td>'
                             + '<td>' + this.Utel + '</td>'
                             + '<td>' + this.Utime + '</td>'
-                            + '<td><input id="Button1" type="button" value="取消权限" onclick="btn(' + this.Uid + ')"/></td>'
+                            + '<td><input id="Button1" type="button" value="取消审核员身份" onclick="btn(' + this.Uid + ')"/></td>'
                             + '</tr>'
                         $("#tb").append(line);
                     }

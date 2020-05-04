@@ -1963,6 +1963,15 @@ input.input-material {
   color: #8a8d93;
 }
 
+input.input-search {
+    width: 10%;
+    border: none;
+    border-bottom: 1px solid #444951;
+    padding: 0px 0;
+    background: none;
+    color: #8a8d93;
+}
+
 input.input-material.is-invalid {
   border-color: #bb414d !important;
 }

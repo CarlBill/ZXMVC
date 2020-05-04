@@ -56,6 +56,31 @@ $(function () {
     });
 
     // ------------------------------------------------------- //
+    // Material Inputs
+    // ------------------------------------------------------ //
+
+    var search = $('input.input-search');
+
+    // activate labels for prefilled values
+    search.filter(function () { return $(this).val() !== ""; }).siblings('.label-material').addClass('active');
+
+    // move label on focus
+    search.on('focus', function () {
+        $(this).siblings('.label-material').addClass('active');
+    });
+
+    // remove/keep label on blur
+    search.on('blur', function () {
+        $(this).siblings('.label-material').removeClass('active');
+
+        if ($(this).val() !== '') {
+            $(this).siblings('.label-material').addClass('active');
+        } else {
+            $(this).siblings('.label-material').removeClass('active');
+        }
+    });
+
+    // ------------------------------------------------------- //
     // Footer 
     // ------------------------------------------------------ //   
 

@@ -153,6 +153,9 @@
     <Content Include="imgVer\jquery.min.js" />
     <Content Include="imgVer\sprite.3.2.0.png" />
     <Content Include="imgVer\style.css" />
+    <Content Include="MuBan\CarsImg\0.jpg" />
+    <Content Include="MuBan\CarsImg\0.png" />
+    <Content Include="MuBan\CarsImg\1.jpg" />
     <Content Include="MuBan\CarsImg\1.png" />
     <Content Include="MuBan\CarsImg\10.png" />
     <Content Include="MuBan\CarsImg\11.png" />
@@ -164,6 +167,7 @@
     <Content Include="MuBan\CarsImg\17.png" />
     <Content Include="MuBan\CarsImg\18.png" />
     <Content Include="MuBan\CarsImg\19.png" />
+    <Content Include="MuBan\CarsImg\2.jpg" />
     <Content Include="MuBan\CarsImg\2.png" />
     <Content Include="MuBan\CarsImg\20.png" />
     <Content Include="MuBan\CarsImg\21.png" />
@@ -175,8 +179,11 @@
     <Content Include="MuBan\CarsImg\27.png" />
     <Content Include="MuBan\CarsImg\28.png" />
     <Content Include="MuBan\CarsImg\29.png" />
+    <Content Include="MuBan\CarsImg\3.jpg" />
     <Content Include="MuBan\CarsImg\3.png" />
+    <Content Include="MuBan\CarsImg\4.jpg" />
     <Content Include="MuBan\CarsImg\4.png" />
+    <Content Include="MuBan\CarsImg\5.jpg" />
     <Content Include="MuBan\CarsImg\5.png" />
     <Content Include="MuBan\CarsImg\6.png" />
     <Content Include="MuBan\CarsImg\7.png" />
@@ -511,6 +518,7 @@
     <Content Include="MuBan\js\HuaKuai.js" />
     <Content Include="MuBan\login.html" />
     <Content Include="MuBan\register.html" />
+    <Content Include="MuBan\details.html" />
     <Content Include="MuBan\tables.html" />
     <Content Include="MuBan\user.html" />
     <Content Include="MuBan\shen.html" />

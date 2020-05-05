@@ -53,7 +53,7 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            left: 404px;
+            left: 420px;
             top: 0;
             opacity: 1;
             transition: all 0.8s;
@@ -101,7 +101,7 @@
                                 </form><a href="#" class="forgot-pass">忘记了密码？ 去找回</a><br><small>还没有账号?去注册 </small><a href="register.html" class="signup">注册</a>
                             </div>
                         </div>
-                        <div class="verBox">
+                        <div class="verBox" id="yzImg">
                             <div id="imgVer" style="display:inline-block;"></div>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                             if (d > 0) {
                                 //根据不同的角色显示不同的页面  1管理员  2审核员  3
                                 if (d == 1) {
-                                    addCookie("uName",name, 3)
+                                    addCookie("uName", name, 3)
                                     location.href = "index.html";
                                 }
                                 if (d == 2) {
@@ -200,6 +200,16 @@
                             }
                             else {
                                 alert("登录失败！");
+                                $(".verBox").css({
+                                    "position": "absolute",
+                                    "width": "100 %",
+                                    "text- align": "center",
+                                    "left": "420px",
+                                    "top": "0",
+                                    "opacity": "1",
+                                    "transition": "all 0.8s",
+                                    "padding - top": "85px",
+                                });
                             }
                         }
                     })

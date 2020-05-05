@@ -521,11 +521,9 @@
     <Content Include="MuBan\login.html" />
     <Content Include="MuBan\nothroughdetail.html" />
     <Content Include="MuBan\register.html" />
-    <Content Include="MuBan\details.html" />
     <Content Include="MuBan\throughdetails.html" />
     <Content Include="MuBan\wshen.html" />
     <Content Include="MuBan\userInfo.html" />
-    <Content Include="MuBan\tables.html" />
     <Content Include="MuBan\user.html" />
     <Content Include="MuBan\shen.html" />
     <Content Include="MuBan\Test.html" />

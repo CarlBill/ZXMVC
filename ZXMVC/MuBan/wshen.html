@@ -63,12 +63,14 @@
             <!-- Sidebar Header-->
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <h1 class="h5"><span id="name"></span></h1>
+                <div class="title">
+                    <h1 class="h5"><span id="name"></span></h1>
+                    <p>审核员</p>
+                </div>
             </div>
-            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+            <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
                 <li><a href="indexs.html"> <i class="icon-home"></i>仪表盘 </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
                 <li class="active"><a href="wshen.html"> <i class="fa fa-bar-chart"></i>我审核的申请 </a></li>
                 <li><a href="daishen.html"> <i class="icon-padnote"></i>待审核申请 </a></li>
                 </ul>
@@ -97,7 +99,7 @@
                                         <img src="/MuBan/CarsImg/1.jpg" alt="" style="width:30px;height:30px" onclick="delAll()" />
                                         <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                                             <thead>
-                                                <tr>
+                                                <tr style="color:lightsalmon">
                                                     <th><input id="Checkbox1" type="checkbox" class="top" onclick="allSelect()" />全选/反选</th>
                                                     <th>车辆照片</th>
                                                     <th>用户名</th>
@@ -109,7 +111,7 @@
                                                     <th>操作</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tb">
+                                            <tbody id="tb" style="color:cadetblue">
                                             </tbody>
                                         </table>
                                     </div>

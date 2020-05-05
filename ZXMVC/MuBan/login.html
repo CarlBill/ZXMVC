@@ -191,7 +191,8 @@
                                     location.href = "index.html";
                                 }
                                 if (d == 2) {
-                                    location.href = "";
+                                    addCookie("SName", name, 3)
+                                    location.href = "tables.html";
                                 }
                                 if (d == 3) {
                                     location.href = "";
@@ -227,4 +228,5 @@
         }
         document.cookie = cookieString;
     }
+
 </script>

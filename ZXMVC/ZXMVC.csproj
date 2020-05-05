@@ -199,6 +199,7 @@
     <Content Include="MuBan\css\style.red.css" />
     <Content Include="MuBan\css\style.sea.css" />
     <Content Include="MuBan\css\style.violet.css" />
+    <Content Include="MuBan\daishen.html" />
     <Content Include="MuBan\fonts\dark-dashboard.svg" />
     <Content Include="MuBan\icons-reference\fonts\dark-dashboard.svg" />
     <Content Include="MuBan\icons-reference\icons-reference.html" />
@@ -512,13 +513,17 @@
     <Content Include="MuBan\img\photos\victor-ene-1301123-unsplash.jpg" />
     <Content Include="MuBan\img\template-mac.png" />
     <Content Include="MuBan\index.html" />
+    <Content Include="MuBan\indexs.html" />
     <Content Include="MuBan\js\charts-custom.js" />
     <Content Include="MuBan\js\charts-home.js" />
     <Content Include="MuBan\js\front.js" />
     <Content Include="MuBan\js\HuaKuai.js" />
     <Content Include="MuBan\login.html" />
+    <Content Include="MuBan\nothroughdetail.html" />
     <Content Include="MuBan\register.html" />
     <Content Include="MuBan\details.html" />
+    <Content Include="MuBan\throughdetails.html" />
+    <Content Include="MuBan\wshen.html" />
     <Content Include="MuBan\userInfo.html" />
     <Content Include="MuBan\tables.html" />
     <Content Include="MuBan\user.html" />

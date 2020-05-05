@@ -68,8 +68,8 @@
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
                 <li><a href="indexs.html"> <i class="icon-home"></i>仪表盘 </a></li>
-                <li class="active"><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
-                <li><a href="wshen.html"> <i class="fa fa-bar-chart"></i>我审核的申请 </a></li>
+                <li><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
+                <li class="active"><a href="wshen.html"> <i class="fa fa-bar-chart"></i>我审核的申请 </a></li>
                 <li><a href="daishen.html"> <i class="icon-padnote"></i>待审核申请 </a></li>
                 </ul>
         </nav>
@@ -78,13 +78,13 @@
             <!-- Page Header-->
             <div class="page-header no-margin-bottom">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Tables</h2>
+                    <h2 class="h5 no-margin-bottom">Approved</h2>
                 </div>
             </div>
             <!-- Breadcrumb-->
             <div class="container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">贷款申请</li>
+                    <li class="breadcrumb-item active">我审核的申请</li>
                 </ul>
             </div>
             <section class="no-padding-top">
@@ -147,7 +147,7 @@
     //显示
     function show() {
         $.ajax({
-            url: 'https://localhost:44356/api/Vehicle/GetVehicleInfos',
+            url: 'https://localhost:44356/api/Vehicle/GetVehicleInfosFilterByName?name=' + $("#name").text(),
             type: 'get',
             success: function (data) {
                 $("#tb").empty();
@@ -162,7 +162,7 @@
                         + '<td>' + this.Ctime + '</td>'
                         + '<td>' + status(this.Czt) + '<input id="hidZt" type="hidden" value="' + this.Czt + '" /><input id="hidFrt" type="hidden" value="' + this.Pgtime + '" /</td>'
                         + '<td>' + this.Cbj + '</td>'
-                        + '<td><img src="/MuBan/CarsImg/2.jpg" alt="" onclick="del(' + this.Cid + ')" style="width:30px;height:30px" /><img id="btnThrough" src="/MuBan/CarsImg/5.jpg" alt="" onclick="edit(' + this.Cid + ')" style="width:30px;height:30px" /></td>'
+                        + '<td><img src="/MuBan/CarsImg/3.jpg" alt="" onclick="textMessage(' + this.Utel + ')" style="width:30px;height:30px" /><img src="/MuBan/CarsImg/2.jpg" alt="" onclick="del(' + this.Cid + ')" style="width:30px;height:30px" /><img id="detail" src="/MuBan/CarsImg/5.jpg" alt="" onclick="edit(' + this.Cid + ')" style="width:30px;height:30px" /></td>'
                         + '</tr>'
                     $("#tb").append(line);
                 })
@@ -207,6 +207,21 @@
     }
 
 
+    //点击短信提醒按钮
+    function textMessage(tel) {
+        if ($("#hidZt").val() != 5) {
+            alert('无需提醒该用户')
+        }
+        else {
+            $.ajax({
+                url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + tel,
+                type: 'post',
+                success: function (data) {
+                    alert('提醒成功');
+                }
+            })
+        }
+    }
 
     //全选和反选
     function allSelect() {
@@ -271,7 +286,7 @@
 
     //点击详情按钮
     function edit(cid) {
-        location.href = "/MuBan/details.html?id=" + cid;
+        location.href = "/MuBan/throughdetails.html?id=" + cid;
     }
 
 </script>

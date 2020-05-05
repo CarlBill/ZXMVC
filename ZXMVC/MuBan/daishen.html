@@ -43,10 +43,10 @@
                     <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
-                   
+
                     <!-- Tasks-->
                     <div class="list-inline-item dropdown">
-   
+
                     </div>
                     <!-- Tasks end-->
                     <!-- Megamenu-->
@@ -54,7 +54,7 @@
                     <!-- Log out               -->
                     <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
                 </div>
-                </div>
+            </div>
         </nav>
     </header>
     <div class="d-flex align-items-stretch">
@@ -68,23 +68,23 @@
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
                 <li><a href="indexs.html"> <i class="icon-home"></i>仪表盘 </a></li>
-                <li class="active"><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
+                <li><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
                 <li><a href="wshen.html"> <i class="fa fa-bar-chart"></i>我审核的申请 </a></li>
-                <li><a href="daishen.html"> <i class="icon-padnote"></i>待审核申请 </a></li>
-                </ul>
+                <li class="active"><a href="daishen.html"> <i class="icon-padnote"></i>待审核申请 </a></li>
+            </ul>
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
             <!-- Page Header-->
             <div class="page-header no-margin-bottom">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Tables</h2>
+                    <h2 class="h5 no-margin-bottom">Check Pending</h2>
                 </div>
             </div>
             <!-- Breadcrumb-->
             <div class="container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">贷款申请</li>
+                    <li class="breadcrumb-item active">待审核申请</li>
                 </ul>
             </div>
             <section class="no-padding-top">
@@ -133,7 +133,7 @@
 </html>
 
 <script>
-    
+
     $(function () {
         var n = getCookie("SName");
         if (n == "") {
@@ -147,7 +147,7 @@
     //显示
     function show() {
         $.ajax({
-            url: 'https://localhost:44356/api/Vehicle/GetVehicleInfos',
+            url: 'https://localhost:44356/api/Vehicle/GetVehicleInfosFilterByState',
             type: 'get',
             success: function (data) {
                 $("#tb").empty();
@@ -162,7 +162,7 @@
                         + '<td>' + this.Ctime + '</td>'
                         + '<td>' + status(this.Czt) + '<input id="hidZt" type="hidden" value="' + this.Czt + '" /><input id="hidFrt" type="hidden" value="' + this.Pgtime + '" /</td>'
                         + '<td>' + this.Cbj + '</td>'
-                        + '<td><img src="/MuBan/CarsImg/2.jpg" alt="" onclick="del(' + this.Cid + ')" style="width:30px;height:30px" /><img id="btnThrough" src="/MuBan/CarsImg/5.jpg" alt="" onclick="edit(' + this.Cid + ')" style="width:30px;height:30px" /></td>'
+                        + '<td><img id="btnThrough" src="/MuBan/CarsImg/4.jpg" alt="" onclick="through(' + this.Cuid + ')" style="width:30px;height:30px" /><img src="/MuBan/CarsImg/2.jpg" alt="" onclick="del(' + this.Cid + ')" style="width:30px;height:30px" /><img id="detail" src="/MuBan/CarsImg/5.jpg" alt="" onclick="edit(' + this.Cid + ')" style="width:30px;height:30px" /></td>'
                         + '</tr>'
                     $("#tb").append(line);
                 })
@@ -206,6 +206,25 @@
         }
     }
 
+    //点击审核通过按钮
+    function through(uid) {
+        if ($("#hidZt").val() != 1) {
+            alert('已通过，无需再次修改')
+        }
+        else {
+            $.ajax({
+                url: 'https://localhost:44356/api/ZXLoan/UptState?id=' + uid,
+                type: 'post',
+                success: function (data) {
+                    alert('操作已完成');
+                    show();
+                },
+                error: function (data) {
+                    alert('对不起，操作失败');
+                }
+            })
+        }
+    }
 
 
     //全选和反选
@@ -271,7 +290,7 @@
 
     //点击详情按钮
     function edit(cid) {
-        location.href = "/MuBan/details.html?id=" + cid;
+        location.href = "/MuBan/nothroughdetail.html?id=" + cid;
     }
 
 </script>

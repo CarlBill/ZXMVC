@@ -64,8 +64,8 @@
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h5">Mark Stephen</h1>
-                    <p>Web Designer</p>
+                    <h1 class="h5"><span id="name"></span></h1>
+                    <p>管理员</p>
                 </div>
             </div>
             <ul class="list-unstyled">
@@ -135,9 +135,24 @@
 <script>
 
     $(function () {
+        var n = getCookie("uName");
+        $("#name").text(n);
         show();
         btnSta();
     })
+
+    // 我们定义一个函数，用来读取特定的cookie值。［得到指定名字的cookie对象哦！］
+    function getCookie(name) {
+        var strCookie = document.cookie;
+        var arrCookie = strCookie.split("; ");
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            if (arr[0] == name) return arr[1];
+        }
+        return "";
+    }
+
+
     //显示
     function show() {
         $.ajax({

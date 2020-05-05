@@ -42,7 +42,7 @@
                 <!-- Megamenu-->
                 <!-- Megamenu end     -->
                 <!-- Log out               -->
-                <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
+                <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link" onclick="clear()"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
 
             </div>
         </nav>
@@ -54,8 +54,8 @@
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h5">Mark Stephen</h1>
-                    <p>Web Designer</p>
+                    <h1 class="h5"><span id="name"></span></h1>
+                    <p>管理员</p>
                 </div>
             </div>
             <ul class="list-unstyled">
@@ -129,10 +129,32 @@
 <script>
     //文档就绪函数
     $(function () {
+        var n = getCookie("uName");
+        if (n=="") {
+            alert("请您先登录！");
+            location.href = "login.html";
+        }
+        $("#name").text(n);
         userCount();
         cjCount();
         cjMoney();
     })
+
+    // 我们定义一个函数，用来读取特定的cookie值。［得到指定名字的cookie对象哦！］
+    function getCookie(name) {
+        var strCookie = document.cookie;
+        var arrCookie = strCookie.split("; ");
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            if (arr[0] == name) return arr[1];
+        }
+        return "";
+    }
+
+    function clear() {
+
+    }
+
 
     //用户数量
     function userCount() {
@@ -145,6 +167,8 @@
             }
         })
     }
+
+
 
     //成交量
     function cjCount() {

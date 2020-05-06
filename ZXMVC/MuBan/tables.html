@@ -43,10 +43,10 @@
                     <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
-
+                   
                     <!-- Tasks-->
                     <div class="list-inline-item dropdown">
-
+   
                     </div>
                     <!-- Tasks end-->
                     <!-- Megamenu-->
@@ -54,7 +54,7 @@
                     <!-- Log out               -->
                     <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
                 </div>
-            </div>
+                </div>
         </nav>
     </header>
     <div class="d-flex align-items-stretch">
@@ -63,17 +63,15 @@
             <!-- Sidebar Header-->
             <div class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="title">
-                    <h1 class="h5"><span id="name"></span></h1>
-                    <p>管理员</p>
-                </div>
+                <h1 class="h5"><span id="name"></span></h1>
             </div>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
-                <li><a href="index.html"><i  data-icon="f" class="icon"></i>仪表盘 </a></li>
-                <li><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
-                <li><a href="user.html"><i class="icon icon-user-outline"></i>客户信息</a></li>
-                <li class="active"><a href="tables.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
-            </ul>
+                <li><a href="indexs.html"> <i class="icon-home"></i>仪表盘 </a></li>
+                <li class="active"><a href="tables.html"> <i class="icon-grid"></i>客户贷款申请 </a></li>
+                <li><a href="wshen.html"> <i class="fa fa-bar-chart"></i>我审核的申请 </a></li>
+                <li><a href="daishen.html"> <i class="icon-padnote"></i>待审核申请 </a></li>
+                </ul>
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
@@ -86,7 +84,7 @@
             <!-- Breadcrumb-->
             <div class="container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">贷款信息</li>
+                    <li class="breadcrumb-item active">贷款申请</li>
                 </ul>
             </div>
             <section class="no-padding-top">
@@ -96,9 +94,11 @@
                             <div class="block margin-bottom-sm">
                                 <div class="block margin-bottom-sm">
                                     <div class="table-responsive" style="width:1150px;height:700px">
+                                        <img src="/MuBan/CarsImg/1.jpg" alt="" style="width:30px;height:30px" onclick="delAll()" />
                                         <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                                             <thead>
                                                 <tr style="color:lightsalmon">
+                                                    <th><input id="Checkbox1" type="checkbox" class="top" onclick="allSelect()" />全选/反选</th>
                                                     <th>车辆照片</th>
                                                     <th>用户名</th>
                                                     <th>品牌名称</th>
@@ -109,7 +109,7 @@
                                                     <th>操作</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tb" style="color:cadetblue">
+                                            <tbody id="tb">
                                             </tbody>
                                         </table>
                                     </div>
@@ -133,26 +133,17 @@
 </html>
 
 <script>
-
+    
     $(function () {
-        var n = getCookie("uName");
+        var n = getCookie("SName");
+        if (n == "") {
+            alert("请您先登录！");
+            location.href = "login.html";
+        }
         $("#name").text(n);
         show();
         btnSta();
     })
-
-    // 我们定义一个函数，用来读取特定的cookie值。［得到指定名字的cookie对象哦！］
-    function getCookie(name) {
-        var strCookie = document.cookie;
-        var arrCookie = strCookie.split("; ");
-        for (var i = 0; i < arrCookie.length; i++) {
-            var arr = arrCookie[i].split("=");
-            if (arr[0] == name) return arr[1];
-        }
-        return "";
-    }
-
-
     //显示
     function show() {
         $.ajax({
@@ -163,6 +154,7 @@
                 $(data).each(function () {
                     var line = "";
                     line += '<tr>'
+                        + '<td><input id="Checkbox2" type="checkbox" class="ck" value="'+this.Cid+'" /></td>'
                         + '<td><img src="' + this.Cimg + '" alt="" style="width:40px;height:35px" /></td>'
                         + '<td>' + this.Utname + '</td>'
                         + '<td>' + this.Bname + '</td>'
@@ -170,12 +162,23 @@
                         + '<td>' + this.Ctime + '</td>'
                         + '<td>' + status(this.Czt) + '<input id="hidZt" type="hidden" value="' + this.Czt + '" /><input id="hidFrt" type="hidden" value="' + this.Pgtime + '" /</td>'
                         + '<td>' + this.Cbj + '</td>'
-                        + '<td><img src="/MuBan/CarsImg/3.jpg" alt="" onclick="textMessage(' + this.Utel + ')" style="width:30px;height:30px" /></td>'
+                        + '<td><img src="/MuBan/CarsImg/2.jpg" alt="" onclick="del(' + this.Cid + ')" style="width:30px;height:30px" /><img id="btnThrough" src="/MuBan/CarsImg/5.jpg" alt="" onclick="edit(' + this.Cid + ')" style="width:30px;height:30px" /></td>'
                         + '</tr>'
                     $("#tb").append(line);
                 })
             }
         })
+    }
+
+    // 我们定义一个函数，用来读取特定的cookie值。［得到指定名字的cookie对象哦！］
+    function getCookie(name) {
+        var strCookie = unescape(document.cookie);
+        var arrCookie = strCookie.split("; ");
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            if (arr[0] == name) return arr[1];
+        }
+        return "";
     }
 
     //将状态显示为文字
@@ -203,17 +206,64 @@
         }
     }
 
-    //点击短信提醒按钮
-    function textMessage(tel) {
-        if ($("#hidZt").val() != 5) {
-            alert('无需提醒该用户')
+
+
+    //全选和反选
+    function allSelect() {
+        if ($(".top").prop("checked")) {
+            $(".ck").prop("checked", true);
         }
         else {
+            $(".ck").each(function () {
+                this.checked = !this.checked;
+            })
+        }
+    }
+    //批量删除函数
+    function delAll() {
+        if (confirm("确认删除吗？")) {
+            //收集id
+            var ids = [];
+            $(".ck:checked").each(function () {
+                ids.push(this.value);
+            })
+            //
+            if (ids.length == 0) {
+                alert("请至少选中一条记录");
+                return false;
+            }
+            //利用ajax技术进行删除
             $.ajax({
-                url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + tel,
+                url: 'https://localhost:44356/api/Vehicle/DelVehicleInfos?id=' + ids.toString(),
                 type: 'post',
                 success: function (data) {
-                    alert('提醒成功');
+                    alert('删除成功');
+                    show();
+                },
+                error: function (data) {
+                    alert('删除失败');
+                    show();
+                }
+            })
+        }
+        else {
+            return false;
+        }
+    }
+
+    //单删
+    function del(sid) {
+        if (confirm("确认删除吗?")) {
+            $.ajax({
+                url: 'https://localhost:44356/api/Vehicle/DelVehicleInfos?id=' +sid,
+                type: 'post',
+                success: function (data) {
+                    alert('删除成功');
+                    show();
+                },
+                error: function (data) {
+                    alert('删除失败');
+                    show();
                 }
             })
         }

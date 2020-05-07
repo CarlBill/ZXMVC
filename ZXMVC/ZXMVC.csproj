@@ -526,7 +526,6 @@
     <Content Include="MuBan\userInfo.html" />
     <Content Include="MuBan\user.html" />
     <Content Include="MuBan\shen.html" />
-    <Content Include="MuBan\Test.html" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="MuBan\vendor\bootstrap\css\bootstrap-reboot.css" />

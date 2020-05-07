@@ -227,12 +227,10 @@
                 sTime = "获取手机验证码";
                 iTime = 59;
                 document.getElementById("Button1").disabled = false;
+                return;
             } else {
                 Account = setTimeout("RemainTime()", 1000);
                 iTime = iTime - 1;
-            }
-            if (iTime == 0) {
-                document.getElementById("Button1").value = "获取手机验证码";
             }
             if (iTime > 1) {
                 document.getElementById("Button1").value = sTime + "后重新获取";

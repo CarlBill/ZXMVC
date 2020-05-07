@@ -2,8 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -42,7 +40,7 @@
                 <!-- Megamenu-->
                 <!-- Megamenu end     -->
                 <!-- Log out               -->
-                <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link" onclick="clear()"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
+                <div class="list-inline-item logout"><span class="d-none d-sm-inline" onclick="delCookie('uName')">退出 </span><i class="icon-logout"></i></div>
 
             </div>
         </nav>
@@ -59,7 +57,7 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <li class="active"><a href="index.html"><i  data-icon="f" class="icon"></i>仪表盘 </a></li>
+                <li class="active"><a href="index.html"><i data-icon="f" class="icon"></i>仪表盘 </a></li>
                 <li><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
                 <li><a href="user.html"><i class="icon icon-user-outline"></i>客户信息</a></li>
                 <li><a href="userInfo.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
@@ -69,7 +67,7 @@
         <div class="page-content">
             <div class="page-header">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Dashboard</h2>
+                    <h2 class="h5 no-margin-bottom">仪表盘</h2>
                 </div>
             </div>
             <section class="no-padding-top no-padding-bottom">
@@ -83,7 +81,6 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="block margin-bottom-sm" style="width:1200px;height:900px">
-                                <div class="title"><strong>仪表盘</strong></div>
                                 <div style="width:319px;height:148px;background-color:greenyellow;float:left;margin-left:20px">
                                     <div style="float:left">
                                         <span id="userCount" style="margin-top:15px;margin-left:20px;font-size:50px"></span>
@@ -127,10 +124,12 @@
 </html>
 
 <script>
+
     //文档就绪函数
     $(function () {
+
         var n = getCookie("uName");
-        if (n=="") {
+        if (n == "") {
             alert("请您先登录！");
             location.href = "login.html";
         }
@@ -151,8 +150,11 @@
         return "";
     }
 
-    function clear() {
-
+    function delCookie(name) {//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+        var date = new Date();
+        date.setTime(date.getTime() - 10000);
+        document.cookie = name + "=a; expires=" + date.toGMTString();
+        location.href = "login.html";
     }
 
 

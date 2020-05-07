@@ -2,8 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -40,7 +39,7 @@
                 </div>
                 <!-- Megamenu end     -->
                 <!-- Log out               -->
-                <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
+                <div class="list-inline-item logout"><span class="d-none d-sm-inline" onclick="delCookie('uName')">退出 </span><i class="icon-logout"></i></div>
             </div>
         </nav>
     </header>
@@ -67,7 +66,7 @@
             <!-- Page Header-->
             <div class="page-header no-margin-bottom">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Auditor Management</h2>
+                    <h2 class="h5 no-margin-bottom">审核员管理</h2>
                 </div>
             </div>
             <!-- Breadcrumb-->
@@ -133,6 +132,10 @@
         return "";
     }
 
+    //清除cookie  
+    function clearCookie(name) {
+        setCookie(name, "", -1);
+    } 
 
     //显示
     function load() {

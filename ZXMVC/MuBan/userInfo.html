@@ -2,8 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -52,7 +51,7 @@
                     <!-- Megamenu-->
                     <!-- Megamenu end     -->
                     <!-- Log out               -->
-                    <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">退出 </span><i class="icon-logout"></i></a></div>
+                    <div class="list-inline-item logout"><span class="d-none d-sm-inline" onclick="delCookie('uName')">退出 </span><i class="icon-logout"></i></div>
                 </div>
             </div>
         </nav>
@@ -80,14 +79,8 @@
             <!-- Page Header-->
             <div class="page-header no-margin-bottom">
                 <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Tables</h2>
+                    <h2 class="h5 no-margin-bottom">贷款信息</h2>
                 </div>
-            </div>
-            <!-- Breadcrumb-->
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active">贷款信息</li>
-                </ul>
             </div>
             <section class="no-padding-top">
                 <div class="container-fluid" style="width:2450px;height:900px">
@@ -152,6 +145,10 @@
         return "";
     }
 
+    //清除cookie  
+    function clearCookie(name) {
+        setCookie(name, "", -1);
+    } 
 
     //显示
     function show() {

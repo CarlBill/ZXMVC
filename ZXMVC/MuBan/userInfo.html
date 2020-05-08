@@ -68,7 +68,7 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <li><a href="index.html"><i  data-icon="f" class="icon"></i>仪表盘 </a></li>
+                <li><a href="index.html"><i data-icon="f" class="icon"></i>仪表盘 </a></li>
                 <li><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
                 <li><a href="user.html"><i class="icon icon-user-outline"></i>客户信息</a></li>
                 <li class="active"><a href="tables.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
@@ -83,33 +83,23 @@
                 </div>
             </div>
             <section class="no-padding-top">
-                <div class="container-fluid" style="width:2450px;height:900px">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="block margin-bottom-sm">
-                                <div class="block margin-bottom-sm">
-                                    <div class="table-responsive" style="width:1150px;height:700px">
-                                        <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
-                                            <thead>
-                                                <tr style="color:lightsalmon">
-                                                    <th>车辆照片</th>
-                                                    <th>用户名</th>
-                                                    <th>品牌名称</th>
-                                                    <th>是否二手车</th>
-                                                    <th>提交时间</th>
-                                                    <th>状态</th>
-                                                    <th>报价(单位:万元)</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tb" style="color:cadetblue">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
+                        <thead>
+                            <tr style="color:lightsalmon">
+                                <th>车辆照片</th>
+                                <th>用户名</th>
+                                <th>品牌名称</th>
+                                <th>是否二手车</th>
+                                <th>提交时间</th>
+                                <th>状态</th>
+                                <th>报价(单位:万元)</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tb" style="color:cadetblue">
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </div>
@@ -129,6 +119,10 @@
 
     $(function () {
         var n = getCookie("uName");
+        if (n == "") {
+            alert("请您先登录！");
+            location.href = "login.html";
+        }
         $("#name").text(n);
         show();
         btnSta();
@@ -145,10 +139,10 @@
         return "";
     }
 
-    //清除cookie  
+    //清除cookie
     function clearCookie(name) {
         setCookie(name, "", -1);
-    } 
+    }
 
     //显示
     function show() {

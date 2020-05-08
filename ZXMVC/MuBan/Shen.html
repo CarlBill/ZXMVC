@@ -69,13 +69,6 @@
                     <h2 class="h5 no-margin-bottom">审核员管理</h2>
                 </div>
             </div>
-            <!-- Breadcrumb-->
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">角色管理</a></li>
-                    <li class="breadcrumb-item active">审核员管理        </li>
-                </ul>
-            </div>
             <div>
                 审核员名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询"  class="btn btn-info" onclick="search()"/>
                 <br />
@@ -117,6 +110,10 @@
 <script>
     $(function () {
         var n = getCookie("uName");
+        if (n == "") {
+            alert("请您先登录！");
+            location.href = "login.html";
+        }
         $("#name").text(n);
         load();
     })

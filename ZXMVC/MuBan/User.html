@@ -55,7 +55,7 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <li><a href="index.html"><i  data-icon="f" class="icon"></i>仪表盘 </a></li>
+                <li><a href="index.html"><i data-icon="f" class="icon"></i>仪表盘 </a></li>
                 <li><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
                 <li class="active"><a href="user.html"><i class="icon icon-user-outline"></i>客户信息</a></li>
                 <li><a href="userInfo.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
@@ -69,15 +69,8 @@
                     <h2 class="h5 no-margin-bottom">角色管理</h2>
                 </div>
             </div>
-            <!-- Breadcrumb-->
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">角色管理</a></li>
-                    <li class="breadcrumb-item active">客户管理        </li>
-                </ul>
-            </div>
             <div>
-                客户名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询" class="btn btn-info"/>
+                客户名称：<input id="name" type="text" class="input-search" />真实姓名：<input id="tname" type="text" class="input-search" /><input id="Button1" type="button" value="查询" class="btn btn-info" />
                 <br />
                 <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
                     <thead>
@@ -116,6 +109,10 @@
 <script>
     $(function () {
         var n = getCookie("uName");
+        if (n == "") {
+            alert("请您先登录！");
+            location.href = "login.html";
+        }
         $("#name").text(n);
         load();
     })
@@ -131,10 +128,10 @@
         return "";
     }
 
-    //清除cookie  
+    //清除cookie
     function clearCookie(name) {
         setCookie(name, "", -1);
-    } 
+    }
 
     function load() {
         $.ajax({

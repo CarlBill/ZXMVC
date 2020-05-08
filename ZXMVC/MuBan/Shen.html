@@ -55,7 +55,7 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <li><a href="index.html"><i  data-icon="f" class="icon"></i>仪表盘 </a></li>
+                <li><a href="index.html"><i data-icon="f" class="icon"></i>仪表盘 </a></li>
                 <li class="active"><a href="shen.html"><i class="icon-settings"></i>审核员管理</a></li>
                 <li><a href="user.html"><i class="icon icon-user-outline"></i>客户信息</a></li>
                 <li><a href="userInfo.html"> <i class="icon-grid"></i>客户贷款信息 </a></li>
@@ -70,22 +70,23 @@
                 </div>
             </div>
             <div>
-                审核员名称：<input id="name" type="text" class="input-search"/>真实姓名：<input id="tname" type="text" class="input-search"/><input id="Button1" type="button" value="查询"  class="btn btn-info" onclick="search()"/>
                 <br />
+                <div class="container-fluid d-flex align-items-center justify-content-between"><span style="height:40px;margin-left:155px;">审核员名称：<input id="name" type="text" class="input-search" />真实姓名：<input id="tname" type="text" class="input-search" /><input id="Button1" type="button" value="查询" class="btn btn-info" onclick="search()" /></span><span style="margin-right:20px;width:40px;height:40px;"><input id="Button1" type="image" value="" src="img/photos/添加2.png" style="width:40px;height:40px;" onclick="addShen()"/></span></div>
+                  
                 <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
-                    <thead>
-                        <tr style="color:lightsalmon">
-                            <th>编号</th>
-                            <th>审核员名称</th>
-                            <th>真实姓名</th>
-                            <th>电话号</th>
-                            <th>入职时间</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tb"  style="color:cadetblue">
-                    </tbody>
-                </table>
+                        <thead>
+                            <tr style="color:lightsalmon">
+                                <th>编号</th>
+                                <th>审核员名称</th>
+                                <th>真实姓名</th>
+                                <th>电话号</th>
+                                <th>入职时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tb" style="color:cadetblue">
+                        </tbody>
+                    </table>
             </div>
             <footer class="footer">
                 <div class="footer__block block no-margin-bottom">
@@ -129,10 +130,28 @@
         return "";
     }
 
-    //清除cookie  
+    //清除cookie
     function clearCookie(name) {
         setCookie(name, "", -1);
-    } 
+    }
+
+    //添加审核员
+    function addShen() {
+        window.open('addShen.html', 'newwindow', 'height=600, width=740, top=160, left=260, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no') //这句要写成一行
+        //window.open 弹出新窗口的命令；
+        //'page.html' 弹出窗口的文件名；
+        //'newwindow' 弹出窗口的名字（不是文件名），非必须，可用空''代替；
+        //height = 100 窗口高度；
+        //width = 400 窗口宽度；
+        //top = 0 窗口距离屏幕上方的象素值；
+        //left = 0 窗口距离屏幕左侧的象素值；
+        //toolbar = no 是否显示工具栏，yes为显示；
+        //menubar，scrollbars 表示菜单栏和滚动栏。
+        //resizable = no 是否允许改变窗口大小，yes为允许；
+        //location = no 是否显示地址栏，yes为允许；
+        //status = no 是否显示状态栏内的信息（通常是文件已经打开），yes为允许；
+    }
+
 
     //显示
     function load() {
@@ -166,10 +185,10 @@
     //取消管理员身份
     function cancel(uid) {
         $.ajax({
-            url: "https://localhost:44356/api/ZXLoan/CancelShen?Uid="+uid,
+            url: "https://localhost:44356/api/ZXLoan/CancelShen?Uid=" + uid,
             type: "post",
             success: function (d) {
-                if (d>0) {
+                if (d > 0) {
                     alert("操作成功！");
                     load();
                 } else {

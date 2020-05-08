@@ -511,6 +511,7 @@
     <Content Include="MuBan\img\multiselect-switch.png" />
     <Content Include="MuBan\img\photos\paul-morris-116514-unsplash.jpg" />
     <Content Include="MuBan\img\photos\victor-ene-1301123-unsplash.jpg" />
+    <Content Include="MuBan\img\photos\添加2.png" />
     <Content Include="MuBan\img\template-mac.png" />
     <Content Include="MuBan\index.html" />
     <Content Include="MuBan\indexs.html" />
@@ -520,6 +521,7 @@
     <Content Include="MuBan\js\HuaKuai.js" />
     <Content Include="MuBan\login.html" />
     <Content Include="MuBan\nothroughdetail.html" />
+    <Content Include="MuBan\addShen.html" />
     <Content Include="MuBan\register.html" />
     <Content Include="MuBan\throughdetails.html" />
     <Content Include="MuBan\wshen.html" />

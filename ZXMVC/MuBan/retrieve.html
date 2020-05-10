@@ -49,34 +49,30 @@
                             <div class="content">
                                 <form class="text-left form-validate">
                                     <div class="form-group-material">
-                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="ChangeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名已被注册，请换一个吧！</span>
+                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="ChangeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名不存在！</span>
                                         <label for="register-username" class="label-material">用户名</label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-trueName" type="text" name="trueName" class="input-material" onblur="ChangeTname()" onchange="ChangeTname()"><span id="tname" style="color:orangered">请正确输入您的真实姓名！</span>
-                                        <label for="register-trueName" class="label-material">真实姓名      </label>
-                                    </div>
-                                    <div class="form-group-material">
-                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="ChangeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册，请换一个吧！</span>
+                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="ChangeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">手机号不匹配！</span>
                                         <span><input id="Button1" type="button" value="获取手机验证码" onclick="GetYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
                                         <label for="register-tel" class="label-material">手机号        </label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="ChangeYz()" onchange="ChangeYz()"><span id="yz" style="color:orangered">请先获取验证码！</span><span id="yzs" style="color:orangered">请正确输入验证码！</span>
+                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="ChangeYz()" onchange="ChangeYz()"><span id="yz" style="color:orangered">请获取并正确输入您的验证码！</span>
                                         <label for="register-yz" class="label-material">验证码        </label><input id="Hidden1" type="hidden" />
                                     </div>
                                     <div class="form-group-material">
                                         <input id="register-password" type="password" name="registerPassword" class="input-material" onblur="ChangePwd()" onchange="ChangePwd()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
                                         <label for="register-password" class="label-material">密码        </label>
                                     </div>
-                                    <div class="form-group terms-conditions text-center">
-                                        <input id="register-agree" name="registerAgree" type="checkbox" class="checkbox-template" onclick="ChangeAgree()">
-                                        <label for="register-agree">我同意这些条款和政策</label><span id="agree" style="color:orangered">需要您的同意</span>
+                                    <div class="form-group-material">
+                                        <input id="register-passwords" type="password" name="registerPassword" class="input-material" onblur="ChangePwds()" onchange="ChangePwds()"><span id="pwds" style="color:orangered">两次密码不一致！</span>
+                                        <label for="register-passwords" class="label-material">确认密码        </label>
                                     </div>
                                     <div class="form-group text-center">
-                                        <input id="register" type="button" value="注册" class="btn btn-primary" onclick="Sign()">
+                                        <input id="register" type="button" value="提交" class="btn btn-primary" onclick="uptPwd()">
                                     </div>
-                                </form><small>已经注册了账号?去登录 </small><a href="login.html" class="signup">登录</a>
+                                </form><a href="login.html" class="signup">去登录</a>
                             </div>
                         </div>
                     </div>
@@ -106,9 +102,8 @@
         document.getElementById("tel").style.display = "none";
         document.getElementById("Ctel").style.display = "none";
         document.getElementById("yz").style.display = "none";
-        document.getElementById("yzs").style.display = "none";
         document.getElementById("pwd").style.display = "none";
-        document.getElementById("agree").style.display = "none";
+        document.getElementById("pwds").style.display = "none";
         $("#Button1").attr("disabled", "true")
     })
 
@@ -122,10 +117,10 @@
                 type: "post",
                 success: function (d) {
                     if (d > 0) {
-                        document.getElementById("com").style.display = "block";
+                        document.getElementById("name").style.display = "none";
                     }
                     else {
-                        document.getElementById("name").style.display = "none";
+                         document.getElementById("com").style.display = "block";
                     }
                 }
             })
@@ -169,23 +164,18 @@
         }
         else {
             document.getElementById("tel").style.display = "block";
-            $("#Button1").attr("disabled", "true");
+            $("#Button1").attr("disabled", "true")
         }
     }
     function ChangeYz() {
         var name = $("#register-yz").val();
 
-        if ($("#Hidden1").val() != "") {
+        //验证码位数正则验证
+        var regName = /^\d{6}$/;
+        if (regName.test(name)) {
             document.getElementById("yz").style.display = "none";
-            if (name == $("#Hidden1").val()) {
-                document.getElementById("yzs").style.display = "none";
-            }
-            else {
-                document.getElementById("yzs").style.display = "block";
-            }
         }
-        else if($("#Hidden1").val() == "") {
-            document.getElementById("yzs").style.display = "none";
+        else {
             document.getElementById("yz").style.display = "block";
         }
     }
@@ -202,51 +192,24 @@
             document.getElementById("pwd").style.display = "block";
         }
     }
-    function ChangeAgree() {
-        if ($("#register-agree").is(":checked") == true) {
-            document.getElementById("agree").style.display = "none";
+
+    function ChangePwds() {
+        var name = $("#register-passwords").val();
+
+        //密码正则验证
+        var regName = /^[a-zA-Z]\w{5,17}$/;
+
+        if (regName.test(name)) {
+            document.getElementById("pwds").style.display = "none";
         }
         else {
-            document.getElementById("agree").style.display = "block";
+            document.getElementById("pwds").style.display = "block";
         }
     }
 
 
     // 短信验证码倒计时
     var iTime = 59;
-    function RemainTime() {
-        document.getElementById("Button1").disabled = true;
-        var iSecond, sSecond = "", sTime = "";
-        if (iTime >= 0) {
-            iSecond = parseInt(iTime % 60);
-            iMinute = parseInt(iTime / 60)
-            if (iSecond >= 0) {
-                if (iMinute > 0) {
-                    sSecond = iMinute + "分" + iSecond + "秒";
-                } else {
-                    sSecond = iSecond + "秒";
-                }
-            }
-            sTime = sSecond;
-            if (iTime == 1) {
-                clearTimeout(Account);
-                sTime = "获取手机验证码";
-                iTime = 59;
-                document.getElementById("Button1").disabled = false;
-                return;
-            } else {
-                Account = setTimeout("RemainTime()", 1000);
-                iTime = iTime - 1;
-            }
-            if (iTime > 1) {
-                document.getElementById("Button1").value = sTime + "后重新获取";
-            }
-        }
-    }
-
-
-
-
     function RemainTime() {
         document.getElementById("Button1").disabled = true;
         var iSecond, sSecond = "", sTime = "";
@@ -287,17 +250,20 @@
                 success: function (d) {
                     if (d > 0) {
                         $("#Hidden1").val(d);
-                        alert('发送成功');
+                        alert('发送成功' + d);
                         RemainTime();
                     }
                     else {
-                        alert("发送失败");
+                        alert(d);
                     }
                 }
             })
         }
+        else {
+
+        }
     }
-    function Sign() {
+    function uptPwd() {
         var name = $("#register-username").val();
         var tname = $("#register-trueName").val();
         var tel = $("#register-tel").val();

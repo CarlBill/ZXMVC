@@ -152,6 +152,13 @@
         //status = no 是否显示状态栏内的信息（通常是文件已经打开），yes为允许；
     }
 
+    window.onbeforeunload = function () {
+        //这里刷新方法有很多，具体要看你的子窗口是怎样出来的
+        window.opener.location.reload();
+        //parent.location.reload();
+        //self.opener.location.reload();
+        //window.opener.location.href=window.opener.location.href;
+    };
 
     //显示
     function load() {

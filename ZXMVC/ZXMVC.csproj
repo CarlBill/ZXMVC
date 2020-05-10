@@ -522,6 +522,7 @@
     <Content Include="MuBan\login.html" />
     <Content Include="MuBan\nothroughdetail.html" />
     <Content Include="MuBan\addShen.html" />
+    <Content Include="MuBan\retrieve.html" />
     <Content Include="MuBan\register.html" />
     <Content Include="MuBan\throughdetails.html" />
     <Content Include="MuBan\wshen.html" />

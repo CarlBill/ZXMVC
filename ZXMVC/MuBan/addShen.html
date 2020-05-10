@@ -36,15 +36,21 @@
                 <div class="form d-flex align-items-center">
                     <div class="content">
                         <div class="form-group-material">
-                            <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="ChangeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名已被注册，请换一个吧！</span>
+                            <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="changeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名已被注册，请换一个吧！</span>
                             <label for="register-username" class="label-material">用户名</label>
                         </div>
                         <div class="form-group-material">
-                            <input id="register-trueName" type="text" name="trueName" class="input-material" onblur="ChangeTname()" onchange="ChangeTname()"><span id="tname" style="color:orangered">请正确输入真实姓名！</span>
+                            <input id="register-trueName" type="text" name="trueName" class="input-material" onblur="changeTname()" onchange="ChangeTname()"><span id="tname" style="color:orangered">请正确输入真实姓名！</span>
                             <label for="register-trueName" class="label-material">真实姓名      </label>
                         </div>
+                        <div>
+                            <select id="slevel" onclick="dropChange()">
+                            </select>
+                            <span id="level" style="color:orangered">请选择审核员等级！</span>
+                            <br />
+                        </div>
                         <div class="form-group-material">
-                            <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="ChangeTel()"><span id="tel" style="color:orangered">请正确输入手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册</span>
+                            <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="changeTel()"><span id="tel" style="color:orangered">请正确输入手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册</span>
                             <label for="register-tel" class="label-material">手机号        </label>
                         </div>
                         <div class="form-group">
@@ -72,9 +78,38 @@
         document.getElementById("tname").style.display = "none";
         document.getElementById("tel").style.display = "none";
         document.getElementById("Ctel").style.display = "none";
+        document.getElementById("level").style.display = "none";
+        dropDown();
     })
 
-    function ChangeName() {
+    function dropChange() {
+        var lid = $("#slevel option:selected").val();
+        if (lid==-1) {
+            document.getElementById("level").style.display = "block";
+        }
+        else {
+            document.getElementById("level").style.display = "none";
+        }
+    }
+
+
+    //绑定等级下拉
+    function dropDown() {
+        $.ajax({
+            url: "https://localhost:44356/api/ZXLoan/GetLevel",
+            type: "get",
+            success: function (d) {
+                $("#slevel").empty();
+                $("#slevel").append('<option value="-1">--请选择--</option>')
+                $(d).each(function () {
+                    var line = '<option value="' + this.Sid + '">' + this.Sname + '</option>';
+                    $("#slevel").append(line);
+                })
+            }
+        })
+    }
+
+    function changeName() {
         var name = $("#register-username").val();
         //用户名正则验证+判重
         var re = /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
@@ -98,7 +133,7 @@
             document.getElementById("com").style.display = "none";
         }
     }
-    function ChangeTname() {
+    function changeTname() {
         var name = $("#register-trueName").val();
         //真实姓名正则验证
         var regName = /^[\u4E00-\u9FA5]{2,4}$/;
@@ -109,7 +144,7 @@
             document.getElementById("tname").style.display = "block";
         }
     }
-    function ChangeTel() {
+    function changeTel() {
         var tel = $("#register-tel").val();
 
         document.getElementById("tel").style.display = "none";
@@ -141,6 +176,7 @@
         var name = $("#register-username").val();
         var tname = $("#register-trueName").val();
         var tel = $("#register-tel").val();
+        var lid = $("#slevel option:selected").val();
         ChangeName();
         ChangeTname();
         ChangeTel();
@@ -148,7 +184,7 @@
             $.ajax({
                 url: "https://localhost:44356/api/ZXLoan/addShen",
                 type: "post",
-                data: { Uname: name, Utname: tname,Utel: tel },
+                data: { Uname: name, Utname: tname,Utel: tel,Ulevel:lid },
                 success: function (d) {
                     if (d > 0) {
                         alert("添加成功！");

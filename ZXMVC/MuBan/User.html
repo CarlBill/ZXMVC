@@ -71,9 +71,10 @@
             </div>
             <div>
                 <br />
-                <div class="container-fluid d-flex align-items-center justify-content-between"><span style="height:40px;margin-left:155px;">审核员名称：<input id="name" type="text" class="input-search" />真实姓名：<input id="tname" type="text" class="input-search" /><input id="Button1" type="button" value="查询" class="btn btn-info" onclick="search()" /></span><span style="margin-right:20px;width:40px;height:40px;"><input id="Button1" type="image" value="" src="img/photos/添加2.png" style="width:40px;height:40px;" /></span></div>
+                <div class="container-fluid d-flex align-items-center justify-content-between"><span style="height:40px;margin-left:155px;">审核员名称：<input id="uname" type="text" class="input-search" />真实姓名：<input id="tname" type="text" class="input-search" /><input id="Button1" type="button" value="查询" class="btn btn-info" onclick="search()" /></span><span style="margin-right:20px;width:40px;height:40px;"></span></div>
 
-                <table class="table" style="text-align:center;border:double;font-size:13px" border="1">
+                <br />
+                <table class="table" style="text-align:center;border:double;font-size:13px;margin-top:5px;" border="1">
                     <thead>
                         <tr style="color:lightsalmon">
                             <th>编号</th>
@@ -130,14 +131,45 @@
     }
 
     //清除cookie
-    function clearCookie(name) {
-        setCookie(name, "", -1);
+    function delCookie(name) {//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+        var date = new Date();
+        date.setTime(date.getTime() - 10000);
+        document.cookie = name + "=a; expires=" + date.toGMTString();
+        location.href = "login.html";
+    }
+
+    //查询
+    function search() {
+        var name = $("#uname").val();
+        var tname = $("#tname").val();
+        alert(name);
+        $.ajax({
+            url: "https://localhost:44356/api/ZXLoan/GetUserSearch",
+            type: "post",
+            data: { Uname: name, Utname: tname },
+            success: function (d) {
+                $("#tb").empty();
+                $(d).each(
+                    function () {
+                        var line = '<tr>'
+                            + '<td>' + this.RowID + '</td>'
+                            + '<td>' + this.Uname + '</td>'
+                            + '<td>' + this.Utname + '</td>'
+                            + '<td>' + this.Utel + '</td>'
+                            + '<td>' + this.Utime + '</td>'
+                            + '<td><input id="Button1" type="button" value="取消审核员身份" class="btn btn-success" onclick="cancel(' + this.Uid + ')"/></td>'
+                            + '</tr>'
+                        $("#tb").append(line);
+                    }
+                )
+            }
+        })
     }
 
     function load() {
         $.ajax({
-            url: "https://localhost:44356/api/ZXLoan/GetUser?name=" + $("#name").val() + "&tname=" + $("#tname").val(),
-            type: "post",
+            url: "https://localhost:44356/api/ZXLoan/GetUser",
+            type: "get",
             success: function (d) {
                 $("#tb").empty();
                 $(d).each(

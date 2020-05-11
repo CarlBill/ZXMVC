@@ -246,37 +246,6 @@
 
 
 
-
-    function RemainTime() {
-        document.getElementById("Button1").disabled = true;
-        var iSecond, sSecond = "", sTime = "";
-        if (iTime >= 0) {
-            iSecond = parseInt(iTime % 60);
-            iMinute = parseInt(iTime / 60)
-            if (iSecond >= 0) {
-                if (iMinute > 0) {
-                    sSecond = iMinute + "分" + iSecond + "秒";
-                } else {
-                    sSecond = iSecond + "秒";
-                }
-            }
-            sTime = sSecond;
-            if (iTime == 1) {
-                clearTimeout(Account);
-                sTime = "获取手机验证码";
-                iTime = 59;
-                document.getElementById("Button1").disabled = false;
-                return;
-            } else {
-                Account = setTimeout("RemainTime()", 1000);
-                iTime = iTime - 1;
-            }
-            if (iTime > 1) {
-                document.getElementById("Button1").value = sTime + "后重新获取";
-            }
-        }
-    }
-
     function getYz() {
         var re = /^1\d{10}$/;
         var tel = $("#register-tel").val();
@@ -304,12 +273,12 @@
         var yz = $("#register-yz").val();
         var pwd = $("#register-password").val();
         var yzCode = $("#Hidden1").val();
-        ChangeName();
-        ChangeTname();
-        ChangeTel();
-        ChangeYz();
-        ChangePwd()
-        ChangeAgree();
+        changeName();
+        changeTname();
+        changeTel();
+        changeYz();
+        changePwd();
+        changeAgree();
         if (name != "" && tname != "" && tel != "" && yz != "" && yz == yzCode && pwd != "" && $("#register-agree").is(":checked") == true) {
             $.ajax({
                 url: "https://localhost:44356/api/ZXLoan/Sign",

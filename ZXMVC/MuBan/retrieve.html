@@ -131,17 +131,7 @@
             document.getElementById("name").style.display = "block";
         }
     }
-    function changeTname() {
-        var name = $("#register-trueName").val();
-        //真实姓名正则验证
-        var regName = /^[\u4E00-\u9FA5]{2,4}$/;
-        if (regName.test(name)) {
-            document.getElementById("tname").style.display = "none";
-        }
-        else {
-            document.getElementById("tname").style.display = "block";
-        }
-    }
+
     function changeTel() {
         var tel = $("#register-tel").val();
 
@@ -155,11 +145,11 @@
                 type: "post",
                 success: function (d) {
                     if (d > 0) {
-                        document.getElementById("Ctel").style.display = "block";
+                        document.getElementById("Ctel").style.display = "none";
+                        $("#Button1").attr("disabled", false);
                     }
                     else {
-                        document.getElementById("name").style.display = "none";
-                        $("#Button1").attr("disabled", false)
+                        document.getElementById("name").style.display = "block";
                     }
                 }
             })
@@ -171,10 +161,10 @@
     }
     function changeYz() {
         var name = $("#register-yz").val();
-
+        var yz = $("#Hidden1").val();
         //验证码位数正则验证
         var regName = /^\d{6}$/;
-        if (regName.test(name)) {
+        if (regName.test(name)&&yz==name) {
             document.getElementById("yz").style.display = "none";
         }
         else {
@@ -252,12 +242,14 @@
     function getYz() {
         var re = /^1\d{10}$/;
         var tel = $("#register-tel").val();
+        var name = $("#register-username").val();
         if (re.test(tel)) {
             $.ajax({
-                url: "",
-                type: "",
-                data: {},
+                url: "https://localhost:44356/api/ZXLoan/ComTelName",
+                type: "post",
+                data: { Uname: name, Utel: tel },
                 success: function (d) {
+                    alert(d);
                     if (d>0) {
                         $.ajax({
                             url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + $("#register-tel").val(),
@@ -265,7 +257,7 @@
                             success: function (d) {
                                 if (d > 0) {
                                     $("#Hidden1").val(d);
-                                    alert('发送成功' + d);
+                                    alert('验证码发送成功');
                                     RemainTime();
                                 }
                                 else {
@@ -281,21 +273,19 @@
             })
         }
     }
+
     function uptPwd() {
         var name = $("#register-username").val();
-        var tname = $("#register-trueName").val();
         var tel = $("#register-tel").val();
         var yz = $("#register-yz").val();
         var pwd = $("#register-password").val();
         var pwds = $("#register-passwords").val();
         var yzCode = $("#Hidden1").val();
-        ChangeName();
-        ChangeTname();
-        ChangeTel();
-        ChangeYz();
-        ChangePwd()
-        ChangeAgree();
-        if (name != "" && tname != "" && tel != "" && yz != "" && yz == yzCode && pwd != ""&&pwds==pwd) {
+        changeName();
+        changeTel();
+        changeYz();
+        changePwd()
+        if (name != "" &&tel != "" && yz != "" && yz == yzCode && pwd != ""&&pwds==pwd) {
             $.ajax({
                 url: "https://localhost:44356/api/ZXLoan/UptPwd",
                 type: "post",

@@ -49,24 +49,24 @@
                             <div class="content">
                                 <form class="text-left form-validate">
                                     <div class="form-group-material">
-                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="ChangeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名不存在！</span>
+                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="changeName()" onchange="changeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名不存在！</span>
                                         <label for="register-username" class="label-material">用户名</label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="ChangeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">手机号不匹配！</span>
-                                        <span><input id="Button1" type="button" value="获取手机验证码" onclick="GetYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
+                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="changeTel()" onchange="changeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">手机号不匹配！</span>
+                                        <span><input id="Button1" type="button" value="获取手机验证码" onclick="getYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
                                         <label for="register-tel" class="label-material">手机号        </label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="ChangeYz()" onchange="ChangeYz()"><span id="yz" style="color:orangered">请获取并正确输入您的验证码！</span>
+                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="changeYz()" onchange="changeYz()"><span id="yz" style="color:orangered">请获取并正确输入您的验证码！</span>
                                         <label for="register-yz" class="label-material">验证码        </label><input id="Hidden1" type="hidden" />
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-password" type="password" name="registerPassword" class="input-material" onblur="ChangePwd()" onchange="ChangePwd()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
+                                        <input id="register-password" type="password" name="registerPassword" class="input-material" onblur="changePwd()" onchange="changePwd()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
                                         <label for="register-password" class="label-material">密码        </label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-passwords" type="password" name="registerPassword" class="input-material" onblur="ChangePwds()" onchange="ChangePwds()"><span id="pwds" style="color:orangered">两次密码不一致！</span>
+                                        <input id="register-passwords" type="password" name="registerPassword" class="input-material" onblur="changePwds()" onchange="changePwds()"><span id="pwds" style="color:orangered">请正确输入确认密码！(字母开头6--18位)</span><span id="pwdss" style="color:orangered">两次密码不一致！</span>
                                         <label for="register-passwords" class="label-material">确认密码        </label>
                                     </div>
                                     <div class="form-group text-center">
@@ -98,16 +98,16 @@
     $(function () {
         document.getElementById("name").style.display = "none";
         document.getElementById("com").style.display = "none";
-        document.getElementById("tname").style.display = "none";
         document.getElementById("tel").style.display = "none";
         document.getElementById("Ctel").style.display = "none";
         document.getElementById("yz").style.display = "none";
         document.getElementById("pwd").style.display = "none";
         document.getElementById("pwds").style.display = "none";
+        document.getElementById("pwdss").style.display = "none";
         $("#Button1").attr("disabled", "true")
     })
 
-    function ChangeName() {
+    function changeName() {
         var name = $("#register-username").val();
         //用户名正则验证+判重
         var re = /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
@@ -118,8 +118,10 @@
                 success: function (d) {
                     if (d > 0) {
                         document.getElementById("name").style.display = "none";
+                        document.getElementById("com").style.display = "none";
                     }
                     else {
+                        document.getElementById("name").style.display = "none";
                          document.getElementById("com").style.display = "block";
                     }
                 }
@@ -129,7 +131,7 @@
             document.getElementById("name").style.display = "block";
         }
     }
-    function ChangeTname() {
+    function changeTname() {
         var name = $("#register-trueName").val();
         //真实姓名正则验证
         var regName = /^[\u4E00-\u9FA5]{2,4}$/;
@@ -140,7 +142,7 @@
             document.getElementById("tname").style.display = "block";
         }
     }
-    function ChangeTel() {
+    function changeTel() {
         var tel = $("#register-tel").val();
 
         document.getElementById("tel").style.display = "none";
@@ -167,7 +169,7 @@
             $("#Button1").attr("disabled", "true")
         }
     }
-    function ChangeYz() {
+    function changeYz() {
         var name = $("#register-yz").val();
 
         //验证码位数正则验证
@@ -179,7 +181,7 @@
             document.getElementById("yz").style.display = "block";
         }
     }
-    function ChangePwd() {
+    function changePwd() {
         var name = $("#register-password").val();
 
         //密码正则验证
@@ -193,17 +195,24 @@
         }
     }
 
-    function ChangePwds() {
-        var name = $("#register-passwords").val();
+    function changePwds() {
+        var name = $("#register-password").val();
+        var names = $("#register-passwords").val();
 
         //密码正则验证
         var regName = /^[a-zA-Z]\w{5,17}$/;
 
-        if (regName.test(name)) {
+        if (regName.test(names)&&name!=""&&name==names) {
             document.getElementById("pwds").style.display = "none";
+            document.getElementById("pwdss").style.display = "none";
+        }
+        else if(name==""||names==""){
+            document.getElementById("pwds").style.display = "block";
+            document.getElementById("pwdss").style.display = "none";
         }
         else {
-            document.getElementById("pwds").style.display = "block";
+            document.getElementById("pwds").style.display = "none";
+            document.getElementById("pwdss").style.display = "block";
         }
     }
 
@@ -240,27 +249,36 @@
         }
     }
 
-    function GetYz() {
+    function getYz() {
         var re = /^1\d{10}$/;
         var tel = $("#register-tel").val();
         if (re.test(tel)) {
             $.ajax({
-                url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + $("#register-tel").val(),
-                type: 'post',
+                url: "",
+                type: "",
+                data: {},
                 success: function (d) {
-                    if (d > 0) {
-                        $("#Hidden1").val(d);
-                        alert('发送成功' + d);
-                        RemainTime();
+                    if (d>0) {
+                        $.ajax({
+                            url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + $("#register-tel").val(),
+                            type: 'post',
+                            success: function (d) {
+                                if (d > 0) {
+                                    $("#Hidden1").val(d);
+                                    alert('发送成功' + d);
+                                    RemainTime();
+                                }
+                                else {
+                                    alert(d);
+                                }
+                            }
+                        })
                     }
                     else {
-                        alert(d);
+                        alert("用户名和手机号不匹配！");
                     }
                 }
             })
-        }
-        else {
-
         }
     }
     function uptPwd() {
@@ -269,6 +287,7 @@
         var tel = $("#register-tel").val();
         var yz = $("#register-yz").val();
         var pwd = $("#register-password").val();
+        var pwds = $("#register-passwords").val();
         var yzCode = $("#Hidden1").val();
         ChangeName();
         ChangeTname();
@@ -276,18 +295,18 @@
         ChangeYz();
         ChangePwd()
         ChangeAgree();
-        if (name != "" && tname != "" && tel != "" && yz != "" && yz == yzCode && pwd != "" && $("#register-agree").is(":checked") == true) {
+        if (name != "" && tname != "" && tel != "" && yz != "" && yz == yzCode && pwd != ""&&pwds==pwd) {
             $.ajax({
-                url: "https://localhost:44356/api/ZXLoan/Sign",
+                url: "https://localhost:44356/api/ZXLoan/UptPwd",
                 type: "post",
-                data: { Uname: name, Utname: tname, Upwd: pwd, Utel: tel },
+                data: { Uname: name,Upwd: pwd},
                 success: function (d) {
                     if (d > 0) {
-                        alert("注册成功！");
+                        alert("成功！");
                         location.href = "login.html";
                     }
                     else {
-                        alert("注册失败！");
+                        alert("失败！");
                     }
                 }
             })

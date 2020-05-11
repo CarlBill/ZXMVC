@@ -49,32 +49,32 @@
                             <div class="content">
                                 <form class="text-left form-validate">
                                     <div class="form-group-material">
-                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="ChangeName()" onchange="ChangeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名已被注册，请换一个吧！</span>
+                                        <input id="register-username" type="text" name="registerUsername" class="input-material" onblur="changeName()" onchange="changeName()"><span id="name" style="color:orangered">请正确输入您的用户名！（2-6位汉字字母数字）</span><span id="com" style="color:orangered">此用户名已被注册，请换一个吧！</span>
                                         <label for="register-username" class="label-material">用户名</label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-trueName" type="text" name="trueName" class="input-material" onblur="ChangeTname()" onchange="ChangeTname()"><span id="tname" style="color:orangered">请正确输入您的真实姓名！</span>
+                                        <input id="register-trueName" type="text" name="trueName" class="input-material" onblur="changeTname()" onchange="changeTname()"><span id="tname" style="color:orangered">请正确输入您的真实姓名！</span>
                                         <label for="register-trueName" class="label-material">真实姓名      </label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="ChangeTel()" onchange="ChangeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册，请换一个吧！</span>
-                                        <span><input id="Button1" type="button" value="获取手机验证码" onclick="GetYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
+                                        <input id="register-tel" type="text" name="tel" class="input-material" onblur="changeTel()" onchange="changeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册，请换一个吧！</span>
+                                        <span><input id="Button1" type="button" value="获取手机验证码" onclick="getYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
                                         <label for="register-tel" class="label-material">手机号        </label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="ChangeYz()" onchange="ChangeYz()"><span id="yz" style="color:orangered">请先获取验证码！</span><span id="yzs" style="color:orangered">请正确输入验证码！</span>
+                                        <input id="register-yz" type="text" name="yz" class="input-material" onblur="changeYz()" onchange="changeYz()"><span id="yz" style="color:orangered">请先获取验证码！</span><span id="yzs" style="color:orangered">请正确输入验证码！</span>
                                         <label for="register-yz" class="label-material">验证码        </label><input id="Hidden1" type="hidden" />
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="register-password" type="password" name="registerPassword" class="input-material" onblur="ChangePwd()" onchange="ChangePwd()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
+                                        <input id="register-password" type="password" name="registerPassword" class="input-material" onblur="changePwd()" onchange="changePwd()"><span id="pwd" style="color:orangered">请正确输入您的密码！(字母开头6--18位)</span>
                                         <label for="register-password" class="label-material">密码        </label>
                                     </div>
                                     <div class="form-group terms-conditions text-center">
-                                        <input id="register-agree" name="registerAgree" type="checkbox" class="checkbox-template" onclick="ChangeAgree()">
+                                        <input id="register-agree" name="registerAgree" type="checkbox" class="checkbox-template" onclick="changeAgree()">
                                         <label for="register-agree">我同意这些条款和政策</label><span id="agree" style="color:orangered">需要您的同意</span>
                                     </div>
                                     <div class="form-group text-center">
-                                        <input id="register" type="button" value="注册" class="btn btn-primary" onclick="Sign()">
+                                        <input id="register" type="button" value="注册" class="btn btn-primary" onclick="sign()">
                                     </div>
                                 </form><small>已经注册了账号?去登录 </small><a href="login.html" class="signup">登录</a>
                             </div>
@@ -112,7 +112,7 @@
         $("#Button1").attr("disabled", "true")
     })
 
-    function ChangeName() {
+    function changeName() {
         var name = $("#register-username").val();
         //用户名正则验证+判重
         var re = /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
@@ -134,7 +134,7 @@
             document.getElementById("name").style.display = "block";
         }
     }
-    function ChangeTname() {
+    function changeTname() {
         var name = $("#register-trueName").val();
         //真实姓名正则验证
         var regName = /^[\u4E00-\u9FA5]{2,4}$/;
@@ -145,7 +145,7 @@
             document.getElementById("tname").style.display = "block";
         }
     }
-    function ChangeTel() {
+    function changeTel() {
         var tel = $("#register-tel").val();
 
         document.getElementById("tel").style.display = "none";
@@ -172,7 +172,7 @@
             $("#Button1").attr("disabled", "true");
         }
     }
-    function ChangeYz() {
+    function changeYz() {
         var name = $("#register-yz").val();
 
         if ($("#Hidden1").val() != "") {
@@ -189,7 +189,7 @@
             document.getElementById("yz").style.display = "block";
         }
     }
-    function ChangePwd() {
+    function changePwd() {
         var name = $("#register-password").val();
 
         //密码正则验证
@@ -277,7 +277,7 @@
         }
     }
 
-    function GetYz() {
+    function getYz() {
         var re = /^1\d{10}$/;
         var tel = $("#register-tel").val();
         if (re.test(tel)) {
@@ -297,7 +297,7 @@
             })
         }
     }
-    function Sign() {
+    function sign() {
         var name = $("#register-username").val();
         var tname = $("#register-trueName").val();
         var tel = $("#register-tel").val();

@@ -249,7 +249,6 @@
                 type: "post",
                 data: { Uname: name, Utel: tel },
                 success: function (d) {
-                    alert(d);
                     if (d>0) {
                         $.ajax({
                             url: 'https://localhost:44356/api/ZXLoan/GetPost?mobile=' + $("#register-tel").val(),

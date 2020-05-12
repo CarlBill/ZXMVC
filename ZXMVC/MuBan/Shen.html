@@ -45,7 +45,7 @@
             top: 2%;
             left: 15%;
             width: 55%;
-            height: 80%;
+            height: 60%;
             padding: 20px;
             border: 5px solid orange;
             background-color: #22252a;
@@ -137,6 +137,7 @@
                                     </select>
                                     <span id="level" style="color:orangered">请选择审核员等级！</span>
                                     <br />
+                                    <p></p>
                                 </div>
                                 <div class="form-group-material">
                                     <input id="register-tel" type="text" name="tel" class="input-material" onblur="changeTel()" onchange="changeTel()"><span id="tel" style="color:orangered">请正确输入手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册</span>
@@ -307,6 +308,13 @@
         var tname = $("#register-trueName").val();
         var tel = $("#register-tel").val();
         var lid = $("#slevel option:selected").val();
+        if (lid == -1) {
+            document.getElementById("level").style.display = "block";
+            return;
+        }
+        else {
+            document.getElementById("level").style.display = "none";
+        }
         changeName();
         changeTname();
         changeTel();
@@ -318,8 +326,8 @@
                 success: function (d) {
                     if (d > 0) {
                         alert("添加成功！");
+                        location.href = "shen.html";
                         retShow();
-                        load();
                     }
                     else {
                         alert("添加失败！");

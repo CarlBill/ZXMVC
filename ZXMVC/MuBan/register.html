@@ -26,6 +26,23 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <script src="../Scripts/jquery-3.4.1.js"></script>
+    <style>
+        /* 发送按钮禁止样式 */
+        .sentBtn.disabled {
+            background-color: #CCC !important;
+            cursor: not-allowed !important;
+        }
+        /* 发送按钮样式 */
+        .sentBtn {
+            min-width: 100px;
+            padding: 5px;
+            border: none;
+            color: #FFF;
+            background-color: #83EBF0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="login-page">
@@ -58,7 +75,7 @@
                                     </div>
                                     <div class="form-group-material">
                                         <input id="register-tel" type="text" name="tel" class="input-material" onblur="changeTel()" onchange="changeTel()"><span id="tel" style="color:orangered">请正确输入您的手机号！</span><span id="Ctel" style="color:orangered">此手机号已被注册，请换一个吧！</span>
-                                        <span><input id="Button1" type="button" value="获取手机验证码" onclick="getYz()" class="btn btn-info" style="float:right;margin-top:30px;" /></span>
+                                        <span><input id="Button1" type="button" value="获取手机验证码"  class="sentBtn" style="float:right;margin-top:30px;" /></span>
                                         <label for="register-tel" class="label-material">手机号        </label>
                                     </div>
                                     <div class="form-group-material">
@@ -213,38 +230,23 @@
 
 
     // 短信验证码倒计时
-    var iTime = 59;
-    function RemainTime() {
-        document.getElementById("Button1").disabled = true;
-        var iSecond, sSecond = "", sTime = "";
-        if (iTime >= 0) {
-            iSecond = parseInt(iTime % 60);
-            iMinute = parseInt(iTime / 60)
-            if (iSecond >= 0) {
-                if (iMinute > 0) {
-                    sSecond = iMinute + "分" + iSecond + "秒";
-                } else {
-                    sSecond = iSecond + "秒";
-                }
-            }
-            sTime = sSecond;
-            if (iTime == 1) {
-                clearTimeout(Account);
-                sTime = "获取手机验证码";
-                iTime = 59;
-                document.getElementById("Button1").disabled = false;
+    $('.sentBtn').click(function () {
+        getYz();
+        $(this).addClass("disabled"); //点击获取验证码后，禁用该按钮，开始倒计时
+        var time = 60; //倒计时时间，自定义
+        var $this = $(this); //备份，定时器是异步的，此this非彼this
+        var timer = setInterval(function () {
+            time--; //开始倒计时
+            if (time == 0) { //当倒计时为0秒时，关闭定时器，更改按钮显示文本并设置为可以点击
+                clearInterval(timer);
+                $this.val('获取验证码');
+                $this.removeClass("disabled");
                 return;
-            } else {
-                Account = setTimeout("RemainTime()", 1000);
-                iTime = iTime - 1;
             }
-            if (iTime > 1) {
-                document.getElementById("Button1").value = sTime + "后重新获取";
-            }
-        }
-    }
-
-
+            $this.val('还剩' + time + "秒"); //显示剩余秒数
+        }, 1000); //定时器一秒走一次，每次减一，就是倒计时了
+    });
+   
 
     function getYz() {
         var re = /^1\d{10}$/;
